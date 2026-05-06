@@ -1,9 +1,9 @@
-# Hotel Guest Registration Form – Requirements (CodeSpeaks)
+# Hotel Guest Registration Form
 
-## 1. Overview
 A web-based guest registration form for hotel check-in. Guests fill out personal details, travel dates, and room preferences. Data is validated client-side and server-side, then persisted to PostgreSQL.
 
-## 2. Tech Stack
+## Tech Stack
+
 | Layer | Technology |
 |-------|-----------|
 | Frontend | React 18, Next.js 14 (App Router) |
@@ -15,7 +15,8 @@ A web-based guest registration form for hotel check-in. Guests fill out personal
 | Infrastructure | Docker Compose |
 | Language | TypeScript 5.x |
 
-## 3. Data Model – `guests` table
+## Data Model – `guests` table
+
 | Column | Type | Constraints |
 |--------|------|------------|
 | id | SERIAL | PK |
@@ -33,7 +34,8 @@ A web-based guest registration form for hotel check-in. Guests fill out personal
 | agree_to_terms | BOOLEAN | NOT NULL |
 | created_at | TIMESTAMPTZ | NOT NULL, default NOW() |
 
-## 4. Validation Rules (Yup)
+## Validation Rules (Yup)
+
 - **firstName / lastName**: required, 2–50 chars, trimmed
 - **email**: required, valid email format
 - **phone**: required, matches international phone regex `^\+?[0-9\s\-()]{7,20}$`
@@ -46,7 +48,8 @@ A web-based guest registration form for hotel check-in. Guests fill out personal
 - **specialRequests**: optional, max 500 chars
 - **agreeToTerms**: must be `true`
 
-## 5. API Endpoints
+## API Endpoints
+
 ### `POST /api/guests`
 - Accepts JSON body matching `GuestFormValues`
 - Validates via shared Yup schema
@@ -58,7 +61,8 @@ A web-based guest registration form for hotel check-in. Guests fill out personal
 ### `GET /api/guests`
 - Returns all guest records ordered by `created_at DESC`
 
-## 6. UI / UX
+## UI / UX
+
 - Single-page form at `/`
 - Two-column grid layout for related fields
 - Inline validation error messages (red, below field)
@@ -66,7 +70,8 @@ A web-based guest registration form for hotel check-in. Guests fill out personal
 - Success screen with booking reference ID and "Register Another" button
 - Responsive design via CSS grid
 
-## 7. Project Structure
+## Project Structure
+
 ```
 guest_form/
 ├── docker-compose.yml          # PostgreSQL service
@@ -89,10 +94,10 @@ guest_form/
 │       └── api/
 │           └── guests/
 │               └── route.ts    # REST API handler
-└── REQUIREMENTS.md             # This file
 ```
 
-## 8. Running the Project
+## Getting Started
+
 ```bash
 # 1. Start PostgreSQL
 docker compose up -d
@@ -106,4 +111,27 @@ npm run db:migrate
 # 4. Start dev server
 npm run dev
 ```
+
 App available at http://localhost:3000
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run lint` | Run ESLint |
+| `npm test` | Run unit tests (Jest) |
+| `npm run cy:run` | Run E2E tests (Cypress) |
+
+## CI (GitHub Actions)
+
+Every pull request to `main` triggers three parallel jobs:
+
+| Job | What it does |
+|-----|-------------|
+| **lint** | Runs `next lint` to check for code issues |
+| **unit-tests** | Runs Jest unit tests |
+| **e2e-tests** | Spins up a PostgreSQL service, runs DB migrations, builds the app, and runs Cypress E2E tests |
+
+The workflow is defined in [`.github/workflows/ci.yml`](./.github/workflows/ci.yml).
