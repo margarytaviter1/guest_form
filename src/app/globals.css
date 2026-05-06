@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f8f9fb;
+  color: #1e293b;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+/* ── Header ── */
+.page-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.page-header p {
+  color: #64748b;
+  font-size: 0.92rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Sections ── */
+.form-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  border: 1px solid #e2e8f0;
+}
+
+.form-section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.85rem;
+}
+
+.section-hint {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-bottom: 0.85rem;
+  margin-top: -0.3rem;
+}
+
+/* ── Fields ── */
+.form-group {
+  margin-bottom: 0.85rem;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1e293b;
+  transition: all 0.15s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* ── Toggle cards (activities, hygiene) ── */
+.toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.6rem;
+}
+
+.toggle-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.85rem 0.5rem;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle-card input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-card .toggle-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.toggle-card .toggle-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #64748b;
+  text-align: center;
+}
+
+.toggle-card:has(input:checked) {
+  background: #eef2ff;
+  border-color: #6366f1;
+}
+
+.toggle-card:has(input:checked) .toggle-label {
+  color: #4338ca;
+  font-weight: 600;
+}
+
+.toggle-card:active {
+  transform: scale(0.97);
+}
+
+/* ── Toggle row (baby cot) ── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: #1e293b;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #6366f1;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* ── Validation ── */
+.error {
+  color: #ef4444;
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Submit ── */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.9rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button[type="submit"]:hover {
+  background: #4f46e5;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.985);
+}
+
+button[type="submit"]:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
+/* ── Success / empty state ── */
+.success-message,
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.success-icon,
+.empty-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.success-message h2 {
+  color: #059669;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.empty-state h2 {
+  color: #475569;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.success-message p,
+.empty-state p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 400px) {
+  .container {
+    padding: 1.25rem 1rem 2rem;
+  }
+  .toggle-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
