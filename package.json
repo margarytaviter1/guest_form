@@ -36,6 +36,7 @@
     "jest-environment-jsdom": "^30.3.0",
     "nock": "^14.0.14",
     "ts-jest": "^29.4.9",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.0"
   }
 }
