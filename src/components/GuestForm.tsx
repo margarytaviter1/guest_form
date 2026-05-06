@@ -66,7 +66,7 @@ export default function GuestForm() {
         }
       }}
     >
-      {({ isSubmitting, values }) => (
+      {({ isSubmitting }) => (
         <Form noValidate>
           {/* ── Час заїзду ── */}
           <div className="form-section">

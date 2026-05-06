@@ -4,8 +4,7 @@ export const preferencesSchema = Yup.object({
   bookingId: Yup.string().required("Невірне посилання"),
 
   // Час заїзду
-  arrivalTime: Yup.string()
-    .required("Оберіть орієнтовний час заїзду"),
+  arrivalTime: Yup.string().required("Оберіть орієнтовний час заїзду"),
 
   // Харчування
   mealPlan: Yup.string()

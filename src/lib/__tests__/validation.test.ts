@@ -69,8 +69,8 @@ describe("preferencesSchema", () => {
     try {
       await preferencesSchema.validate(data, { abortEarly: false });
       fail("should have thrown");
-    } catch (err: any) {
-      expect(err.errors.length).toBeGreaterThanOrEqual(2);
+    } catch (err: unknown) {
+      expect((err as { errors: string[] }).errors.length).toBeGreaterThanOrEqual(2);
     }
   });
 });

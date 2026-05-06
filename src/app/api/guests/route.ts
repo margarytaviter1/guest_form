@@ -30,31 +30,23 @@ export async function POST(req: NextRequest) {
         data.hygieneShampoo ?? false,
         data.hygieneSoap ?? false,
         data.comments || null,
-      ]
+      ],
     );
 
-    return NextResponse.json(
-      { success: true, id: result.rows[0].id },
-      { status: 201 }
-    );
-  } catch (err: any) {
-    if (err.name === "ValidationError") {
+    return NextResponse.json({ success: true, id: result.rows[0].id }, { status: 201 });
+  } catch (err: unknown) {
+    if (err instanceof Error && err.name === "ValidationError") {
       return NextResponse.json(
-        { success: false, errors: err.errors },
-        { status: 400 }
+        { success: false, errors: (err as Error & { errors: string[] }).errors },
+        { status: 400 },
       );
     }
     console.error("Preferences submission error:", err);
-    return NextResponse.json(
-      { success: false, error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
   }
 }
 
 export async function GET() {
-  const result = await pool.query(
-    "SELECT * FROM guest_preferences ORDER BY created_at DESC"
-  );
+  const result = await pool.query("SELECT * FROM guest_preferences ORDER BY created_at DESC");
   return NextResponse.json(result.rows);
 }

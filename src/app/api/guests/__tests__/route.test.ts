@@ -15,10 +15,10 @@ jest.mock("@/lib/db", () => ({
 import pool from "@/lib/db";
 const mockQuery = pool.query as jest.Mock;
 
-function makeRequest(body: any): any {
+function makeRequest(body: Record<string, unknown>) {
   return {
     json: async () => body,
-  } as any;
+  } as unknown as import("next/server").NextRequest;
 }
 
 beforeEach(() => {

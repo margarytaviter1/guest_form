@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "db:migrate": "node scripts/migrate.js",
-    "lint": "next lint",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "cy:open": "cypress open",
@@ -22,6 +25,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@jest/types": "^30.3.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -32,11 +36,18 @@
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "cypress": "^15.14.2",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "nock": "^14.0.14",
+    "prettier": "^3.8.3",
     "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.59.2"
   }
 }

@@ -43,9 +43,12 @@ describe("GuestForm", () => {
       expect(screen.getByText("Дякуємо!")).toBeInTheDocument();
     });
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/guests", expect.objectContaining({
-      method: "POST",
-    }));
+    expect(mockFetch).toHaveBeenCalledWith(
+      "/api/guests",
+      expect.objectContaining({
+        method: "POST",
+      }),
+    );
   });
 
   it("shows alert on server error", async () => {
