@@ -8,8 +8,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="uk" suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <a href="#main-content" className="skip-link">
+          Перейти до основного вмісту
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

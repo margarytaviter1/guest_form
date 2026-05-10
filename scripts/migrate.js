@@ -2,8 +2,7 @@ const { Pool } = require("pg");
 
 const pool = new Pool({
   connectionString:
-    process.env.DATABASE_URL ||
-    "postgresql://guestapp:guestapp123@localhost:5432/guestform",
+    process.env.DATABASE_URL || "postgresql://guestapp:guestapp123@localhost:5432/guestform",
 });
 
 async function migrate() {
@@ -19,6 +18,8 @@ async function migrate() {
         active_bicycle BOOLEAN NOT NULL DEFAULT FALSE,
         active_sup BOOLEAN NOT NULL DEFAULT FALSE,
         active_garden BOOLEAN NOT NULL DEFAULT FALSE,
+        active_excursions BOOLEAN NOT NULL DEFAULT FALSE,
+        active_mushrooms BOOLEAN NOT NULL DEFAULT FALSE,
         need_baby_cot BOOLEAN NOT NULL DEFAULT FALSE,
         hygiene_slippers BOOLEAN NOT NULL DEFAULT TRUE,
         hygiene_toothbrush BOOLEAN NOT NULL DEFAULT TRUE,

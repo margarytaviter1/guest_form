@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import GuestForm from "@/components/GuestForm";
+import HeavyStatsToggle from "@/components/HeavyStatsToggle";
 
 export default function Home() {
   return (
-    <main className="container">
+    <main className="container" id="main-content">
       <div className="page-header">
         <h1>Ваше перебування</h1>
         <p>Розкажіть нам про ваші побажання — це займе хвилину</p>
@@ -17,6 +18,7 @@ export default function Home() {
       >
         <GuestForm />
       </Suspense>
+      <HeavyStatsToggle />
     </main>
   );
 }

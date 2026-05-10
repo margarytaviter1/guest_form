@@ -23,9 +23,22 @@ export const preferencesSchema = Yup.object({
   activeBicycle: Yup.boolean(),
   activeSup: Yup.boolean(),
   activeGarden: Yup.boolean(),
+  activeExcursions: Yup.boolean(),
+  activeMushrooms: Yup.boolean(),
+
+  // Транспорт
+  transport: Yup.string().oneOf(["none", "own_car", "transfer"], "Оберіть варіант").required(),
+  carPlate: Yup.string().when("transport", {
+    is: "own_car",
+    then: (s) =>
+      s
+        .required("Вкажіть номерний знак")
+        .matches(/^[A-ZА-ЯІЇЄҐ]{2}\d{4}[A-ZА-ЯІЇЄҐ]{2}$/, "Невірний формат (напр. АА1234ВВ)"),
+    otherwise: (s) => s.optional(),
+  }),
 
   // Дитяче ліжко
-  needBabyCot: Yup.boolean(),
+  needBabyBed: Yup.boolean(),
 
   // Гігієна
   hygieneSlippers: Yup.boolean(),
@@ -35,6 +48,11 @@ export const preferencesSchema = Yup.object({
 
   // Коментарі
   comments: Yup.string().max(1000, "Максимум 1000 символів").optional(),
+
+  // Згода з умовами
+  agreeToTerms: Yup.boolean()
+    .oneOf([true], "Необхідно погодитися з умовами")
+    .required("Необхідно погодитися з умовами"),
 });
 
 export type PreferencesValues = Yup.InferType<typeof preferencesSchema>;
@@ -47,10 +65,15 @@ export const initialValues: PreferencesValues = {
   activeBicycle: false,
   activeSup: false,
   activeGarden: false,
-  needBabyCot: false,
+  activeExcursions: false,
+  activeMushrooms: false,
+  transport: "none",
+  carPlate: "",
+  needBabyBed: false,
   hygieneSlippers: true,
   hygieneToothbrush: true,
   hygieneShampoo: true,
   hygieneSoap: true,
   comments: "",
+  agreeToTerms: false,
 };
