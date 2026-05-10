@@ -31,10 +31,12 @@ export function sanitize<T>(obj: T): T {
 
 const logger = pino({
   level: process.env.NODE_ENV === "production" ? "info" : "debug",
-  transport: {
-    target: "pino-pretty",
-    options: { colorize: true },
-  },
+  ...(process.env.NODE_ENV !== "production" && {
+    transport: {
+      target: "pino-pretty",
+      options: { colorize: true },
+    },
+  }),
   redact: {
     paths: PII_FIELDS.map((f) => `*.${f}`).concat(PII_FIELDS),
     censor: "[REDACTED]",
