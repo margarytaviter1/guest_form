@@ -29,7 +29,7 @@ describe("POST /api/guests", () => {
   it("returns 201 on valid data", async () => {
     mockQuery.mockResolvedValueOnce({ rows: [{ id: 42 }] });
 
-    const body = { ...initialValues, bookingId: "abc-123" };
+    const body = { ...initialValues, bookingId: "abc-123", agreeToTerms: true };
     const res = await POST(makeRequest(body));
     const json = await res.json();
 
@@ -53,7 +53,7 @@ describe("POST /api/guests", () => {
   it("returns 500 on db error", async () => {
     mockQuery.mockRejectedValueOnce(new Error("DB down"));
 
-    const body = { ...initialValues, bookingId: "abc-123" };
+    const body = { ...initialValues, bookingId: "abc-123", agreeToTerms: true };
     const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
     const res = await POST(makeRequest(body));
     const json = await res.json();
@@ -66,7 +66,7 @@ describe("POST /api/guests", () => {
   it("passes null for mealGuests when mealPlan is none", async () => {
     mockQuery.mockResolvedValueOnce({ rows: [{ id: 1 }] });
 
-    const body = { ...initialValues, bookingId: "x", mealPlan: "none" };
+    const body = { ...initialValues, bookingId: "x", mealPlan: "none", agreeToTerms: true };
     await POST(makeRequest(body));
 
     const args = mockQuery.mock.calls[0][1];

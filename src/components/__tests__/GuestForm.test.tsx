@@ -37,6 +37,7 @@ describe("GuestForm", () => {
 
     render(<GuestForm />);
     const user = userEvent.setup();
+    await user.click(screen.getByLabelText(/погоджуюся/i));
     await user.click(screen.getByText("Зберегти побажання"));
 
     await waitFor(() => {
@@ -60,6 +61,7 @@ describe("GuestForm", () => {
 
     render(<GuestForm />);
     const user = userEvent.setup();
+    await user.click(screen.getByLabelText(/погоджуюся/i));
     await user.click(screen.getByText("Зберегти побажання"));
 
     await waitFor(() => {
@@ -75,6 +77,7 @@ describe("GuestForm", () => {
 
     render(<GuestForm />);
     const user = userEvent.setup();
+    await user.click(screen.getByLabelText(/погоджуюся/i));
     await user.click(screen.getByText("Зберегти побажання"));
 
     await waitFor(() => {

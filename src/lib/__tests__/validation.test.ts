@@ -2,7 +2,7 @@ import { preferencesSchema, initialValues } from "../validation";
 
 describe("preferencesSchema", () => {
   it("accepts valid default values with a bookingId", async () => {
-    const data = { ...initialValues, bookingId: "abc-123" };
+    const data = { ...initialValues, bookingId: "abc-123", agreeToTerms: true };
     await expect(preferencesSchema.validate(data)).resolves.toBeDefined();
   });
 
@@ -37,6 +37,7 @@ describe("preferencesSchema", () => {
       bookingId: "x",
       mealPlan: "none",
       mealGuests: undefined,
+      agreeToTerms: true,
     };
     await expect(preferencesSchema.validate(data)).resolves.toBeDefined();
   });
@@ -60,6 +61,7 @@ describe("preferencesSchema", () => {
       ...initialValues,
       bookingId: "x",
       comments: "a".repeat(1000),
+      agreeToTerms: true,
     };
     await expect(preferencesSchema.validate(data)).resolves.toBeDefined();
   });
