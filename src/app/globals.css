@@ -271,6 +271,9 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  transition: all 0.2s ease;
 }
 
 button[type="submit"]:active {
@@ -280,6 +283,18 @@ button[type="submit"]:active {
 button[type="submit"]:disabled {
   background: #a5b4fc;
   cursor: not-allowed;
+  animation: submitPulse 1.5s ease-in-out infinite;
+}
+
+/* Gentle pulse while the form is submitting */
+@keyframes submitPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* ── Success / empty state ── */
@@ -292,6 +307,10 @@ button[type="submit"]:disabled {
   border: 1px solid #e2e8f0;
 }
 
+.success-message {
+  animation: fadeSlideIn 0.6s ease-out both;
+}
+
 .success-icon,
 .empty-icon {
   font-size: 3rem;
@@ -299,10 +318,23 @@ button[type="submit"]:disabled {
   margin-bottom: 0.75rem;
 }
 
+.success-message .success-icon {
+  animation: bounceIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.success-message .success-icon:active {
+  animation: tapPop 0.6s ease-out;
+}
+
 .success-message h2 {
   color: #059669;
   font-size: 1.4rem;
   font-weight: 700;
+  animation:
+    fadeSlideIn 0.5s ease-out 0.4s both,
+    colorPulse 2s ease-in-out 1s infinite;
 }
 
 .empty-state h2 {
@@ -316,6 +348,66 @@ button[type="submit"]:disabled {
   color: #64748b;
   font-size: 0.95rem;
   margin-top: 0.35rem;
+}
+
+.success-message p {
+  animation: fadeSlideIn 0.5s ease-out 0.6s both;
+}
+
+/* ── Keyframe animations (pure CSS, no JS/third-party libs) ── */
+
+/* Fade in while sliding up from below */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elastic bounce-in scale effect */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Subtle colour shift on the heading */
+@keyframes colorPulse {
+  0%,
+  100% {
+    color: #059669;
+  }
+  50% {
+    color: #0d9488;
+  }
+}
+
+/* Scale up on click, then back to normal */
+@keyframes tapPop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* ── Responsive ── */
